@@ -1,0 +1,19 @@
+-- write a SQL query that orders the itmes by price
+Select (item_name), price
+FROM superstore
+Order by price ;
+
+-- wrtie a SQl query that will show a statistic about the item prices
+Select Sum(price)
+From superstore;
+
+-- write a SQL query that will show a statistic about the price for items in the category of "Kitchen Supplies"
+Select item_name, price
+From superstore
+Where category = "Kitchen Supplies";
+
+
+select item_name, price, stock_quantity
+from superstore
+Where category = "Kitchen Supplies"
+Order By stock_quantity;
