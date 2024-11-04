@@ -1,0 +1,38 @@
+--Schema
+CREATE TABLE marathon (
+    id INTEGER PRIMARY KEY AUTOINCREMENT,
+   participant_name TEXT,
+   previous_experience TEXT,
+   completion_fraction REAL);
+
+INSERT INTO marathon (participant_name, previous_experience,  completion_fraction)
+    VALUES ("Sadie Hawkins", "yes", 1);
+INSERT INTO marathon (participant_name, previous_experience,  completion_fraction)
+    VALUES ("Brandon Flowers", "no", 0.241);
+INSERT INTO marathon (participant_name, previous_experience,  completion_fraction)
+    VALUES ("Michael Scott", "no", 0.804);
+INSERT INTO marathon (participant_name, previous_experience,  completion_fraction)
+    VALUES ("Karamo Brown", "yes", 0.9512);
+INSERT INTO marathon (participant_name, previous_experience,  completion_fraction)
+    VALUES ("Antoni Porowski", "yes", 0.640);
+INSERT INTO marathon (participant_name, previous_experience,  completion_fraction)
+    VALUES ("Rajnighanda Kapoor", "no", 1);
+
+--SQL Query
+Select participant_name
+,completion_fraction*100 as completion_percent
+From marathon;
+
+--Query to round out the percentages
+Select participant_name,
+Round(completion_fraction*100,1) as completion_percent
+from marathon;
+
+--Query to show how many employees completed each quarter of the marathon (75% or more, 50%, 25%, or under 25%)
+Select count(*),
+Case When completion_fraction>=.75 Then "75%+"
+When completion_fraction>=.5 Then "50%+"
+When completion_fraction>=.25 Then "25%+"
+Else "Under 25%" End As "quarter_completed"
+From marathon
+Group By quarter_completed;
